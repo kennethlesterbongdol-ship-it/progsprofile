@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenneth Lester Bongdol — UI/UX Designer & Software Engineer</title>
+<style>
+:root{
+  --bg:#f6f7fb; --surface:#fff; --text:#10131a; --muted:#687083;
+  --line:#e6e8ef; --primary:#6c4cff; --primary2:#8b6cff;
+  --dark:#12141b; --green:#18b889; --shadow:0 20px 60px rgba(20,25,40,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{width:min(1160px,calc(100% - 40px));margin:auto}
+.nav{height:76px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:21px;font-weight:850;letter-spacing:-.04em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:28px;color:#5f6675;font-size:14px;font-weight:600}
+.nav-links a:hover{color:var(--primary)}
+.menu{display:none;border:0;background:none;font-size:24px}
+.hero{padding:90px 0 75px;background:linear-gradient(180deg,#fff 0%,#f6f7fb 100%);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .75fr .75fr;gap:42px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#f0edff;color:#5d40e8;border:1px solid #ded7ff;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:800;letter-spacing:.04em}
+.status{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 0 4px #18b88920}
+h1{font-size:clamp(52px,7vw,88px);line-height:.93;letter-spacing:-.065em;margin:25px 0 22px}
+.gradient{background:linear-gradient(100deg,#111,#6c4cff,#18b889);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;color:var(--muted);max-width:620px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:13px;padding:13px 19px;font-size:14px;font-weight:750;border:1px solid var(--line)}
+.btn-primary{background:var(--dark);color:#fff;border-color:var(--dark);box-shadow:0 10px 25px #12141b18}
+.btn-primary:hover{background:#252936}
+.btn-light{background:#fff}
+.photo-card{position:relative;min-height:520px;display:flex;align-items:flex-end;justify-content:center}
+.photo-bg{position:absolute;width:330px;height:330px;border-radius:50%;background:linear-gradient(135deg,#d9d0ff,#d9fff4);top:70px;box-shadow:0 25px 70px #6c4cff20}
+.profile-img{position:relative;z-index:2;width:min(100%,430px);max-height:530px;object-fit:contain;filter:drop-shadow(0 24px 28px rgba(20,25,40,.16))}
+.profile-placeholder{position:relative;z-index:2;width:300px;height:300px;border-radius:50%;display:grid;place-items:center;background:#ddd5ff;color:#6c4cff;font-size:70px;font-weight:900}
+.code-card{background:#151821;color:#dfe4ef;border-radius:20px;padding:20px;box-shadow:var(--shadow);font:13px/2 Consolas,monospace;overflow:hidden}
+.window{display:flex;gap:6px;margin-bottom:17px}
+.window i{width:9px;height:9px;border-radius:50%;background:#535a68}
+.purple{color:#b6a2ff} .cyan{color:#64dfca} .yellow{color:#f5d37c} .gray{color:#8d95a5}
+.section{padding:95px 0}
+.section-head{max-width:720px;margin-bottom:42px}
+.kicker{font-size:12px;color:var(--primary);font-weight:850;letter-spacing:.16em;text-transform:uppercase}
+h2{font-size:clamp(34px,4vw,52px);letter-spacing:-.055em;line-height:1.05;margin:9px 0 14px}
+.sub{color:var(--muted);max-width:680px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 8px 35px rgba(20,25,40,.04)}
+.panel h3{margin-bottom:9px;font-size:20px}
+.panel p{color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.skill{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.skill-top{display:flex;justify-content:space-between;font-weight:750;font-size:14px}
+.track{height:7px;background:#eceef4;border-radius:99px;margin-top:13px;overflow:hidden}
+.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--primary),#18b889)}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.25s}
+.project:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.project-top{height:155px;background:linear-gradient(135deg,#171a23,#37304f);padding:20px;color:#fff;display:flex;align-items:flex-end}
+.project-top.green{background:linear-gradient(135deg,#10261f,#25725c)}
+.project-top.blue{background:linear-gradient(135deg,#151d32,#365d99)}
+.project-body{padding:24px}
+.project-body h3{font-size:20px;margin-bottom:8px}
+.project-body p{font-size:14px;color:var(--muted)}
+.tags{margin-top:17px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;font-weight:750;padding:5px 9px;border-radius:999px;background:#f1f2f6;color:#656d7d}
+.contact{background:var(--dark);color:#fff;border-radius:28px;padding:55px;display:flex;align-items:center;justify-content:space-between;gap:35px}
+.contact .sub{color:#aeb4c2}
+.contact .btn-primary{background:#fff;color:#111;border-color:#fff}
+footer{border-top:1px solid var(--line);padding:30px 0;color:#7a8190;font-size:13px}
+@media(max-width:1050px){
+ .hero-grid{grid-template-columns:1fr 1fr} .hero-copy{grid-column:1/-1}
+ .code-card{display:none} .photo-card{min-height:430px}
+}
+@media(max-width:760px){
+ .nav-links{display:none} .menu{display:block} .hero{padding-top:60px}
+ .hero-grid,.about-grid,.skills,.projects{grid-template-columns:1fr}
+ .hero-copy{grid-column:auto} .photo-card{order:-1;min-height:350px}
+ .photo-bg{width:280px;height:280px} .profile-img{max-width:310px}
+ .section{padding:70px 0} .contact{padding:32px;display:block}
+ .contact .btn{margin-top:22px} h1{font-size:58px}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">Kenneth<span>.</span></a>
+    <nav class="nav-links"><a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#contact">Contact</a></nav>
+    <button class="menu" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+<div class="container hero-grid">
+  <div class="hero-copy">
+    <span class="eyebrow"><span class="status"></span> AVAILABLE FOR OPPORTUNITIES</span>
+    <h1>Designing ideas.<br><span class="gradient">Building impact.</span></h1>
+    <p class="lead">I'm <strong>Kenneth Lester Bongdol</strong>, a Software Engineer, Front-End Developer and UI/UX Designer focused on creating clean, responsive and useful digital experiences.</p>
+    <div class="actions"><a href="#work" class="btn btn-primary">View my work ↗</a><a href="#contact" class="btn btn-light">Let's connect</a></div>
+  </div>
+  <div class="photo-card"><div class="photo-bg"></div><img src="profile.png" alt="Kenneth Lester Bongdol" class="profile-img"></div>
+  <div class="code-card"><div class="window"><i></i><i></i><i></i></div><span class="purple">const</span> designer = {<br>
+&nbsp;&nbsp;<span class="cyan">role:</span> <span class="yellow">'Software Engineer'</span>,<br>
+&nbsp;&nbsp;<span class="cyan">uiux:</span> <span class="yellow">true</span>,<br>
+&nbsp;&nbsp;<span class="cyan">frontend:</span> <span class="yellow">'React.js'</span>,<br>
+&nbsp;&nbsp;<span class="cyan">backend:</span> <span class="yellow">'PHP'</span>,<br>
+&nbsp;&nbsp;<span class="cyan">framework:</span> <span class="yellow">'Bootstrap 5'</span><br>};</div>
+</div>
+</section>
+
+<section id="about" class="section"><div class="container">
+<div class="section-head"><div class="kicker">01 — About</div><h2>Developer mindset. Designer eye.</h2><p class="sub">A portfolio experience designed around clarity, hierarchy and usability—not just decoration.</p></div>
+<div class="about-grid"><div class="panel"><h3>What I do</h3><p>I design interfaces and develop responsive web applications using modern front-end technologies and practical backend solutions.</p></div><div class="panel"><h3>My approach</h3><p>Understand the user → structure the information → design the interface → build the experience → test and improve.</p></div></div>
+</div></section>
+
+<section id="skills" class="section"><div class="container">
+<div class="section-head"><div class="kicker">02 — Skills</div><h2>Tools I use to turn ideas into products.</h2></div>
+<div class="skills">
+<div class="skill"><div class="skill-top"><span>React.js</span><span>90%</span></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+<div class="skill"><div class="skill-top"><span>UI/UX Design</span><span>90%</span></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+<div class="skill"><div class="skill-top"><span>Bootstrap 5</span><span>92%</span></div><div class="track"><div class="fill" style="width:92%"></div></div></div>
+<div class="skill"><div class="skill-top"><span>CSS</span><span>90%</span></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+<div class="skill"><div class="skill-top"><span>PHP</span><span>82%</span></div><div class="track"><div class="fill" style="width:82%"></div></div></div>
+<div class="skill"><div class="skill-top"><span>MySQL</span><span>80%</span></div><div class="track"><div class="fill" style="width:80%"></div></div></div>
+</div></div></section>
+
+<section id="work" class="section"><div class="container">
+<div class="section-head"><div class="kicker">03 — Selected work</div><h2>Projects with a purpose.</h2></div>
+<div class="projects">
+<article class="project"><div class="project-top"><b>DOCUMENT TRACKING SYSTEM</b></div><div class="project-body"><h3>Web-based Document Tracker</h3><p>Real-time document status visibility, routing, notifications and reporting for office operations.</p><div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Bootstrap 5</span></div></div></article>
+<article class="project"><div class="project-top green"><b>PORTFOLIO EXPERIENCE</b></div><div class="project-body"><h3>Programmer Profile</h3><p>A personal developer portfolio combining UI/UX principles with a clean engineering-focused interface.</p><div class="tags"><span class="tag">React</span><span class="tag">CSS</span><span class="tag">Responsive</span></div></div></article>
+<article class="project"><div class="project-top blue"><b>INFORMATION SYSTEM</b></div><div class="project-body"><h3>Attendance Management</h3><p>Student and teacher accounts with organized attendance records and dashboard views.</p><div class="tags"><span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">MySQL</span></div></div></article>
+</div></div></section>
+
+<section id="contact" class="section"><div class="container"><div class="contact"><div><div class="kicker" style="color:#9f8dff">04 — Contact</div><h2 style="margin-top:10px">Let's build something useful.</h2><p class="sub">Available for collaborations, internships, freelance projects and software development opportunities.</p></div><a class="btn btn-primary" href="mailto:your.email@example.com">Start a conversation ↗</a></div></div></section>
+</main>
+<footer><div class="container">© 2026 Kenneth Lester Bongdol · Software Engineer • UI/UX Designer • Front-End Developer</div></footer>
+</body></html>
