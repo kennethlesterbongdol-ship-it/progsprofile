@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kenneth Lester S. Bongdol | Developer Portfolio</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     :root {
       --bg: #061326;
@@ -36,17 +37,15 @@
       overflow-x: hidden;
     }
 
-    /* Deep dark blue background with animated tech grid */
+    /* === BACKGROUND IMAGE + ANIMATED TECH GRID === */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -3;
-      background:
-        radial-gradient(ellipse at 15% 15%, #123b69 0%, transparent 40%),
-        radial-gradient(ellipse at 90% 75%, #17275b 0%, transparent 38%),
-        linear-gradient(135deg, #040b17, #071a32 55%, #061126);
-      animation: bgPulse 12s ease-in-out infinite alternate;
+      z-index: -4;
+      background: url('background.jpg') center/cover no-repeat fixed;
+      opacity: 0.85;
+      animation: bgZoom 30s ease-in-out infinite alternate;
     }
 
     body::after {
@@ -55,18 +54,33 @@
       inset: 0;
       z-index: -2;
       pointer-events: none;
-      opacity: 0.16;
+      opacity: 0.10;
       background-image:
-        linear-gradient(rgba(96, 168, 255, 0.18) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(96, 168, 255, 0.18) 1px, transparent 1px);
+        linear-gradient(rgba(96, 168, 255, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96, 168, 255, 0.25) 1px, transparent 1px);
       background-size: 42px 42px;
       mask-image: linear-gradient(to bottom, black, transparent 92%);
       animation: gridShift 20s linear infinite;
     }
 
-    @keyframes bgPulse {
-      0% { opacity: 0.9; }
-      100% { opacity: 1; }
+    /* Fallback dark blue overlay so text stays readable */
+    body {
+      background-color: #040b17;
+    }
+
+    /* Dark blue tint overlay on top of the image for contrast */
+    body > .bg-tint {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background: radial-gradient(ellipse at 15% 15%, rgba(18, 59, 105, 0.55) 0%, transparent 45%),
+                  radial-gradient(ellipse at 90% 75%, rgba(23, 39, 91, 0.55) 0%, transparent 42%),
+                  linear-gradient(135deg, rgba(4, 11, 23, 0.82), rgba(7, 26, 50, 0.75) 55%, rgba(6, 17, 38, 0.85));
+    }
+
+    @keyframes bgZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.06); }
     }
 
     @keyframes gridShift {
@@ -94,7 +108,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(4, 13, 27, 0.78);
+      background: rgba(4, 13, 27, 0.82);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--line);
     }
@@ -301,6 +315,7 @@
       height: 350px;
       filter: drop-shadow(0 28px 50px #0008);
       animation: float 6s ease-in-out infinite;
+      transition: transform 0.2s ease-out;
     }
 
     @keyframes float {
@@ -971,9 +986,12 @@
 </head>
 <body>
 
+<!-- Dark blue tint overlay for readability -->
+<div class="bg-tint"></div>
+
 <header class="nav">
   <div class="container nav-inner">
-    <a class="logo" href="#">KENNETH<span>.</span>DEV</a>
+    <a class="logo" href="#">KENNETHLESTER<span>.</span>DEV</a>
     <nav class="nav-links" id="navLinks" aria-label="Portfolio sections">
       <button data-modal="about">About</button>
       <button data-modal="skills">Skills</button>
@@ -993,7 +1011,7 @@
         <span class="eyebrow reveal"><i class="pulse"></i> DEVELOPER • DESIGNER • PROBLEM SOLVER</span>
         <h1 class="reveal delay1">Designing ideas.<br><span class="gradient">Building the future.</span></h1>
         <p class="lead reveal delay2">
-          I'm <strong>Kenneth Lester Bongdol</strong>, a Software Engineer, Front-End Developer,
+          I'm <strong>Kenneth Lester S. Bongdol</strong>, a Software Engineer, Front-End Developer,
           and UI/UX Designer focused on clean interfaces, responsive experiences, and useful digital solutions.
         </p>
         <div class="actions reveal delay2">
@@ -1116,10 +1134,9 @@
           ['HTML & CSS','85%','85%'],
           ['Bootstrap 5','85%','85%'],
           ['UI/UX Design','80%','80%'],
-          ['JavaScript','70%','70%'],
           ['PHP','70%','70%'],
-          ['MySQL','70%','70%'],
-          ['React.js','60%','60%'],
+          ['MySQL','50%','50%'],
+          ['React.js','40%','40%'],
           ['Responsive Design','85%','85%']
         ].map(([n,v,w]) => `
           <div class="info-card">
@@ -1182,38 +1199,39 @@
       html: `<div class="modal-grid">
         <article class="info-card">
           <h3>Bachelor of Science in Information Technology</h3>
-          <p>Nueva Vizcaya State University – Bayombong Campus<br>2022 – Present</p>
+          <p>Nueva Vizcaya State University – Bayombong Campus<br>2019 – Present</p>
         </article>
         <article class="info-card">
           <h3>Senior High School – STEM</h3>
-          <p>Southern Isabela College of Arts and Trades<br>2020 – 2022</p>
+          <p>Southern Isabela College of Arts and Trades<br>2017 – 20218/p>
         </article>
         <article class="info-card">
           <h3>Junior High School</h3>
-          <p>Balasi Secretario National High School<br>2016 – 2020</p>
+          <p>Balasi Secretario National High School<br>2015 – 2016</p>
         </article>
         <article class="info-card">
           <h3>Elementary</h3>
-          <p>Balasi Elementary School<br>2010 – 2016</p>
+          <p>Balasi Elementary School<br>2012 – 2013</p>
         </article>
       </div>`
     },
     contact: {
-      title: "Contact",
-      html: `<div class="modal-grid">
-        <div class="info-card">
-          <h3>Let's work together</h3>
-          <p>Open to learning opportunities, collaborations, internships, and web development projects.</p>
-          <p style="margin-top:12px">Email: <a href="mailto:kenneth.bongdol@example.com" style="color:#78e4ff">kenneth.bongdol@example.com</a></p>
-        </div>
-        <form class="contact-form" id="contactForm">
-          <input name="name" placeholder="Your name" required>
-          <input type="email" name="email" placeholder="Your email" required>
-          <textarea name="message" placeholder="Your message" required></textarea>
-          <button class="btn btn-primary" type="submit">Prepare email ↗</button>
-        </form>
-      </div>`
-    }
+  title: "Contact",
+  html: `<div class="modal-grid">
+    <div class="info-card">
+      <h3>Let's work together</h3>
+      <p>Open to learning opportunities, collaborations, internships, and web development projects.</p>
+      <p style="margin-top:12px">Email: <a href="mailto:YOUR_EMAIL@gmail.com" style="color:#78e4ff">YOUR_EMAIL@gmail.com</a></p>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <input name="from_name" placeholder="Your name" required>
+      <input type="email" name="from_email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Your message" required></textarea>
+      <button class="btn btn-primary" type="submit" id="sendBtn">Send message ↗</button>
+      <p id="formStatus" style="font-size:12px;color:#8faaca;margin-top:6px;"></p>
+    </form>
+  </div>`
+}
   };
 
   // ---------- MODAL CONTROLS ----------
@@ -1262,15 +1280,42 @@
   });
 
   // Contact form mailto handler
-  document.addEventListener('submit', e => {
-    if (e.target.id === 'contactForm') {
-      e.preventDefault();
-      const f = new FormData(e.target);
-      const subject = encodeURIComponent('Portfolio inquiry from ' + f.get('name'));
-      const body = encodeURIComponent('From: ' + f.get('name') + ' (' + f.get('email') + ')\n\n' + f.get('message'));
-      window.location.href = 'mailto:kenneth.bongdol@example.com?subject=' + subject + '&body=' + body;
-    }
-  });
+  emailjs.init("YOUR_PUBLIC_KEY"); // ← replace with your actual Public Key
+
+// Contact form submission handler
+document.addEventListener('submit', function (e) {
+  if (e.target.id === 'contactForm') {
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('sendBtn');
+    const status = document.getElementById('formStatus');
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    status.textContent = '';
+
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID',   // ← replace with your Service ID
+      'YOUR_TEMPLATE_ID',  // ← replace with your Template ID
+      form
+    )
+    .then(function () {
+      status.style.color = '#4ef3c4';
+      status.textContent = '✓ Message sent! I\'ll get back to you soon.';
+      btn.textContent = 'Send message ↗';
+      btn.disabled = false;
+      form.reset();
+    })
+    .catch(function (err) {
+      status.style.color = '#ff7b7b';
+      status.textContent = '✗ Something went wrong. Please try again.';
+      btn.textContent = 'Send message ↗';
+      btn.disabled = false;
+      console.error('EmailJS error:', err);
+    });
+  }
+});
+
 
   // Generate keyboard keys (56 keys in a 14x4 grid)
   const keysContainer = document.getElementById('keys');
