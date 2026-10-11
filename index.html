@@ -1,167 +1,1303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kenneth Lester Bongdol | Developer Portfolio</title>
-<style>
-:root{--bg:#061326;--bg2:#0a1d38;--panel:rgba(13,34,62,.82);--line:rgba(126,183,255,.2);--text:#edf6ff;--muted:#a5bad4;--cyan:#52d8ff;--blue:#4b83ff;--violet:#8b7bff}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,Segoe UI,system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 15% 15%,#123b69 0,transparent 40%),radial-gradient(ellipse at 90% 75%,#17275b 0,transparent 38%),linear-gradient(135deg,#040b17,#071a32 55%,#061126)}
-body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(96,168,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(96,168,255,.18) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 92%)}
-a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
-.container{width:min(1180px,calc(100% - 36px));margin:auto}
-.nav{position:sticky;top:0;z-index:20;background:rgba(4,13,27,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-weight:850;letter-spacing:-.04em;font-size:19px}.logo span{color:var(--cyan)}
-.nav-links{display:flex;gap:10px;align-items:center}
-.nav-links button{border:1px solid transparent;color:var(--muted);background:transparent;padding:9px 13px;border-radius:11px;font-size:13px;font-weight:700;transition:.25s}
-.nav-links button:hover,.nav-links button:focus-visible{color:white;background:#17345a;border-color:var(--line);outline:none}
-.menu{display:none;color:white;background:transparent;border:1px solid var(--line);border-radius:10px;padding:8px 11px}
-.hero{padding:86px 0 74px;min-height:calc(100vh - 76px);display:flex;align-items:center;position:relative;isolation:isolate}
-.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:58px;align-items:center}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #4dcbff4d;background:#0b2b49;border-radius:99px;padding:8px 13px;color:#a9eaff;font-size:11px;font-weight:850;letter-spacing:.12em}
-.pulse{width:8px;height:8px;border-radius:50%;background:#58f0bd;box-shadow:0 0 0 5px #58f0bd20;animation:pulse 2s infinite}
-h1{font-size:clamp(44px,6.4vw,82px);line-height:.98;letter-spacing:-.065em;margin:25px 0}
-.gradient{background:linear-gradient(100deg,#fff,#65dcff 48%,#9384ff);color:transparent;background-clip:text;-webkit-background-clip:text}
-.lead{max-width:650px;color:var(--muted);font-size:17px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:12px;padding:12px 17px;border:1px solid var(--line);font-weight:750;font-size:13px;transition:transform .25s,box-shadow .25s,background .25s}
-.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px #0004}
-.btn-primary{background:linear-gradient(110deg,#1878d5,#3c5cff);border-color:#64caff80;color:white}
-.btn-secondary{background:#0c203a;color:#d9ecff}
-.hero-visual{position:relative;min-height:490px;display:grid;place-items:center;perspective:1000px}
-.orbit{position:absolute;border:1px solid #5bbdff35;border-radius:50%;animation:orbit 22s linear infinite}
-.orbit.one{width:420px;height:420px}.orbit.two{width:340px;height:340px;animation-direction:reverse;animation-duration:17s}
-.orbit:before{content:"";position:absolute;width:9px;height:9px;background:var(--cyan);border-radius:50%;top:15%;left:15%;box-shadow:0 0 20px var(--cyan)}
-.tech-scene{position:relative;width:min(100%,500px);height:350px;filter:drop-shadow(0 28px 50px #0008);animation:float 6s ease-in-out infinite}
-.monitor{position:absolute;top:4px;left:50%;transform:translateX(-50%) rotateY(-7deg);width:69%;height:57%;border:8px solid #172a43;border-bottom-width:13px;border-radius:13px;background:linear-gradient(145deg,#07162a,#102e51);box-shadow:0 0 0 1px #5dcaff50,0 0 35px #1d91ff30;overflow:hidden}
-.monitor:before{content:"";position:absolute;inset:12px;background:repeating-linear-gradient(0deg,transparent 0 22px,#46cfff15 23px 24px),linear-gradient(135deg,#0d3154,#08172b)}
-.screen-code{position:absolute;inset:20px 18px;color:#6ee8ff;font:11px/1.9 Consolas,monospace;text-shadow:0 0 10px #35caff88}
-.screen-code span{color:#a69aff}.monitor-neck{position:absolute;top:61%;left:47%;width:7%;height:13%;background:linear-gradient(90deg,#142840,#36516d,#101e31);transform:skew(-4deg)}
-.monitor-base{position:absolute;top:73%;left:34%;width:34%;height:5%;background:linear-gradient(#35516d,#101d30);clip-path:polygon(15% 0,85% 0,100% 100%,0 100%)}
-.tower{position:absolute;right:1%;bottom:8%;width:22%;height:49%;border-radius:10px;border:1px solid #5ba9df65;background:linear-gradient(110deg,#182c45,#071323 55%,#142b48);box-shadow:inset 0 0 20px #4daeff14}
-.tower:before{content:"";position:absolute;left:18%;right:18%;top:12%;height:44%;border:1px solid #60cfff42;border-radius:50%;background:repeating-radial-gradient(circle,#48d5ff18 0 4px,transparent 5px 10px);box-shadow:0 0 25px #22aaff1c}
-.tower:after{content:"";position:absolute;left:20%;bottom:12%;width:7px;height:7px;background:#4ef3c4;border-radius:50%;box-shadow:0 0 15px #4ef3c4}
-.keyboard{position:absolute;left:5%;bottom:1%;width:75%;height:18%;transform:perspective(230px) rotateX(25deg) rotateZ(-3deg);border:1px solid #6cbaff60;border-radius:9px;background:linear-gradient(145deg,#1c3654,#09172a);padding:9px;box-shadow:0 14px 20px #0008}
-.keys{height:100%;display:grid;grid-template-columns:repeat(14,1fr);grid-template-rows:repeat(3,1fr);gap:4px}
-.keys i{display:block;border-radius:2px;background:linear-gradient(135deg,#234c71,#0b1c30);border:1px solid #4ca8e72b;box-shadow:0 1px 0 #67cfff40}
-.keys i:nth-child(7n){background:linear-gradient(135deg,#16628b,#10304e)}
-.tech-label{position:absolute;left:0;top:9%;border:1px solid var(--line);background:#091c32d9;backdrop-filter:blur(10px);border-radius:12px;padding:10px 13px;font:11px Consolas,monospace;color:#9de9ff;animation:float 5s ease-in-out infinite}
-.tech-label.label2{left:auto;right:0;top:auto;bottom:19%;animation-delay:-2s}
-.section{padding:84px 0}
-.section-head{max-width:700px;margin-bottom:30px}
-.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:850}
-h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.05em;line-height:1.08;margin:8px 0 12px}
-.sub{color:var(--muted)}
-.panel{border:1px solid var(--line);background:linear-gradient(145deg,#102745cc,#08182dcc);border-radius:20px;padding:25px;box-shadow:0 18px 50px #0002}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:28px}
-.stat{border:1px solid var(--line);border-radius:15px;padding:15px;background:#0b2039b3}.stat strong{display:block;color:#b6edff;font-size:22px}.stat span{font-size:11px;color:var(--muted)}
-/* Modal navigation */
-.modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(1,7,16,.76);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:18px;opacity:0;transition:opacity .25s}
-.modal-backdrop.open{display:flex;opacity:1}
-.modal{width:min(900px,100%);max-height:min(85vh,820px);overflow:auto;border:1px solid #5cbaff50;border-radius:22px;background:linear-gradient(145deg,#0d2440,#071326 75%);box-shadow:0 30px 100px #000a;transform:translateY(18px) scale(.98);transition:transform .25s}
-.modal-backdrop.open .modal{transform:translateY(0) scale(1)}
-.modal-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:20px 24px;background:#0b1d34ed;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
-.modal-head h2{font-size:24px;margin:0}.close{width:38px;height:38px;border:1px solid var(--line);border-radius:11px;background:#102b4b;color:white;font-size:23px}
-.modal-content{padding:25px}
-.modal-content p{color:var(--muted)}
-.modal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-.info-card{border:1px solid var(--line);border-radius:16px;padding:18px;background:#0d2038}.info-card h3{font-size:16px;margin-bottom:6px}.info-card p{font-size:13px}
-.skill-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-.skill-top{display:flex;justify-content:space-between;gap:10px;font-size:13px;font-weight:750}.track{height:7px;background:#1c3451;border-radius:99px;margin-top:10px;overflow:hidden}.fill{height:100%;width:var(--w);background:linear-gradient(90deg,#278be9,#53e0ff,#8d83ff);border-radius:99px;transform-origin:left;animation:grow .9s ease both}
-.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-.project-art{height:110px;border-radius:12px;margin-bottom:14px;display:flex;align-items:end;padding:13px;background:linear-gradient(135deg,#102d50,#245a87);color:#a8edff;font-size:11px;font-weight:850;letter-spacing:.12em}
-.project-art.alt{background:linear-gradient(135deg,#171e4a,#3c3679)}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tag{font-size:10px;padding:4px 8px;border:1px solid var(--line);border-radius:99px;color:#a9c8e8}
-.certificates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.certificate{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#0b1e35;transition:transform .25s,border-color .25s}.certificate:hover{transform:translateY(-5px);border-color:#65d8ff88}
-.cert-art{height:135px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(circle at 80% 10%,#3568a6,transparent 38%),linear-gradient(135deg,#102b4b,#081528);border-bottom:1px solid var(--line)}
-.cert-art .seal{align-self:flex-end;width:34px;height:34px;display:grid;place-items:center;border:1px solid #7bdfff;border-radius:50%;color:#7bdfff}
-.cert-art small{color:#8be4ff;letter-spacing:.15em;font-size:9px}.cert-art strong{font-size:16px;line-height:1.15;max-width:190px}
-.cert-body{padding:14px}.cert-body h3{font-size:13px;line-height:1.35}.cert-body p{font-size:11px;color:var(--muted);margin-top:5px}
-.note{font-size:12px;color:#8faaca;margin-top:18px}
-.contact-form{display:grid;gap:12px}.contact-form input,.contact-form textarea{width:100%;background:#06162a;color:white;border:1px solid var(--line);border-radius:11px;padding:12px 13px;font:inherit;outline:none}.contact-form input:focus,.contact-form textarea:focus{border-color:var(--cyan)}.contact-form textarea{min-height:100px;resize:vertical}
-footer{padding:25px 0;border-top:1px solid var(--line);color:#7e9ab9;font-size:12px}
-.reveal{opacity:0;transform:translateY(18px);animation:reveal .8s ease forwards}.delay1{animation-delay:.15s}.delay2{animation-delay:.3s}
-@keyframes reveal{to{opacity:1;transform:translateY(0)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}@keyframes orbit{to{transform:rotate(360deg)}}@keyframes pulse{50%{box-shadow:0 0 0 8px #58f0bd08}}@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@media(max-width:850px){.hero-grid{grid-template-columns:1fr;gap:20px}.hero-visual{min-height:410px;order:-1}.hero{padding-top:45px}.tech-scene{max-width:470px}.nav-links{display:none;position:absolute;top:76px;left:18px;right:18px;padding:12px;background:#07172beF;border:1px solid var(--line);border-radius:15px;flex-wrap:wrap}.nav-links.show{display:flex}.menu{display:block}.certificates{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.container{width:min(100% - 26px,1180px)}.hero-visual{min-height:330px}.orbit.one{width:320px;height:320px}.orbit.two{width:260px;height:260px}.tech-scene{height:280px}.tech-label{font-size:9px}.section{padding:60px 0}.stats{grid-template-columns:1fr}.modal-content{padding:17px}.modal-head{padding:16px}.modal-grid,.skill-list,.projects,.certificates{grid-template-columns:1fr}.cert-art{height:120px}h1{font-size:49px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenneth Lester S. Bongdol | Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #061326;
+      --bg2: #0a1d38;
+      --panel: rgba(13, 34, 62, 0.82);
+      --line: rgba(126, 183, 255, 0.2);
+      --text: #edf6ff;
+      --muted: #a5bad4;
+      --cyan: #52d8ff;
+      --blue: #4b83ff;
+      --violet: #8b7bff;
+      --glow: 0 0 20px rgba(82, 216, 255, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Deep dark blue background with animated tech grid */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(ellipse at 15% 15%, #123b69 0%, transparent 40%),
+        radial-gradient(ellipse at 90% 75%, #17275b 0%, transparent 38%),
+        linear-gradient(135deg, #040b17, #071a32 55%, #061126);
+      animation: bgPulse 12s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image:
+        linear-gradient(rgba(96, 168, 255, 0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96, 168, 255, 0.18) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 92%);
+      animation: gridShift 20s linear infinite;
+    }
+
+    @keyframes bgPulse {
+      0% { opacity: 0.9; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes gridShift {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 42px 42px, 42px 42px; }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(4, 13, 27, 0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-weight: 850;
+      letter-spacing: -0.04em;
+      font-size: 19px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nav-links button {
+      border: 1px solid transparent;
+      color: var(--muted);
+      background: transparent;
+      padding: 9px 13px;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.25s;
+    }
+
+    .nav-links button:hover,
+    .nav-links button:focus-visible {
+      color: white;
+      background: #17345a;
+      border-color: var(--line);
+      outline: none;
+    }
+
+    .menu {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 11px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 86px 0 74px;
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 58px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid #4dcbff4d;
+      background: #0b2b49;
+      border-radius: 99px;
+      padding: 8px 13px;
+      color: #a9eaff;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #58f0bd;
+      box-shadow: 0 0 0 5px #58f0bd20;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% { box-shadow: 0 0 0 8px #58f0bd08; }
+    }
+
+    h1 {
+      font-size: clamp(44px, 6.4vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      margin: 25px 0;
+    }
+
+    .gradient {
+      background: linear-gradient(100deg, #fff, #65dcff 48%, #9384ff);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .lead {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 12px;
+      padding: 12px 17px;
+      border: 1px solid var(--line);
+      font-weight: 750;
+      font-size: 13px;
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px #0004;
+    }
+
+    .btn-primary {
+      background: linear-gradient(110deg, #1878d5, #3c5cff);
+      border-color: #64caff80;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #0c203a;
+      color: #d9ecff;
+    }
+
+    /* HERO VISUAL – ANIMATED FUTURISTIC PC */
+    .hero-visual {
+      position: relative;
+      min-height: 490px;
+      display: grid;
+      place-items: center;
+      perspective: 1000px;
+    }
+
+    .orbit {
+      position: absolute;
+      border: 1px solid #5bbdff35;
+      border-radius: 50%;
+      animation: orbit 22s linear infinite;
+    }
+
+    .orbit.one {
+      width: 420px;
+      height: 420px;
+    }
+
+    .orbit.two {
+      width: 340px;
+      height: 340px;
+      animation-direction: reverse;
+      animation-duration: 17s;
+    }
+
+    .orbit:before {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      background: var(--cyan);
+      border-radius: 50%;
+      top: 15%;
+      left: 15%;
+      box-shadow: 0 0 20px var(--cyan);
+    }
+
+    @keyframes orbit {
+      to { transform: rotate(360deg); }
+    }
+
+    .tech-scene {
+      position: relative;
+      width: min(100%, 500px);
+      height: 350px;
+      filter: drop-shadow(0 28px 50px #0008);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .monitor {
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%) rotateY(-7deg);
+      width: 69%;
+      height: 57%;
+      border: 8px solid #172a43;
+      border-bottom-width: 13px;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #07162a, #102e51);
+      box-shadow: 0 0 0 1px #5dcaff50, 0 0 35px #1d91ff30;
+      overflow: hidden;
+    }
+
+    .monitor:before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 22px, #46cfff15 23px 24px),
+        linear-gradient(135deg, #0d3154, #08172b);
+    }
+
+    .screen-code {
+      position: absolute;
+      inset: 20px 18px;
+      color: #6ee8ff;
+      font: 11px/1.9 Consolas, monospace;
+      text-shadow: 0 0 10px #35caff88;
+      animation: codeFlicker 4s infinite;
+    }
+
+    @keyframes codeFlicker {
+      0%, 100% { opacity: 1; }
+      95% { opacity: 0.95; }
+      97% { opacity: 0.9; }
+    }
+
+    .screen-code span {
+      color: #a69aff;
+    }
+
+    .monitor-neck {
+      position: absolute;
+      top: 61%;
+      left: 47%;
+      width: 7%;
+      height: 13%;
+      background: linear-gradient(90deg, #142840, #36516d, #101e31);
+      transform: skew(-4deg);
+    }
+
+    .monitor-base {
+      position: absolute;
+      top: 73%;
+      left: 34%;
+      width: 34%;
+      height: 5%;
+      background: linear-gradient(#35516d, #101d30);
+      clip-path: polygon(15% 0, 85% 0, 100% 100%, 0 100%);
+    }
+
+    /* SYSTEM UNIT – MORE TECHNOLOGICAL */
+    .tower {
+      position: absolute;
+      right: 1%;
+      bottom: 8%;
+      width: 22%;
+      height: 49%;
+      border-radius: 10px;
+      border: 1px solid #5ba9df65;
+      background: linear-gradient(110deg, #182c45, #071323 55%, #142b48);
+      box-shadow: inset 0 0 20px #4daeff14, 0 0 30px #1a6bb520;
+      overflow: hidden;
+    }
+
+    .tower:before {
+      content: "";
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      top: 12%;
+      height: 44%;
+      border: 1px solid #60cfff42;
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(circle, #48d5ff18 0 4px, transparent 5px 10px);
+      box-shadow: 0 0 25px #22aaff1c;
+      animation: spinSlow 12s linear infinite;
+    }
+
+    @keyframes spinSlow {
+      to { transform: rotate(360deg); }
+    }
+
+    .tower:after {
+      content: "";
+      position: absolute;
+      left: 20%;
+      bottom: 12%;
+      width: 7px;
+      height: 7px;
+      background: #4ef3c4;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #4ef3c4;
+      animation: blink 1.8s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0.3; }
+    }
+
+    /* KEYBOARD – MORE DETAILED */
+    .keyboard {
+      position: absolute;
+      left: 5%;
+      bottom: 1%;
+      width: 75%;
+      height: 18%;
+      transform: perspective(230px) rotateX(25deg) rotateZ(-3deg);
+      border: 1px solid #6cbaff60;
+      border-radius: 9px;
+      background: linear-gradient(145deg, #1c3654, #09172a);
+      padding: 9px;
+      box-shadow: 0 14px 20px #0008, 0 0 30px #2d7ec920;
+    }
+
+    .keys {
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(14, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 4px;
+    }
+
+    .keys i {
+      display: block;
+      border-radius: 2px;
+      background: linear-gradient(135deg, #234c71, #0b1c30);
+      border: 1px solid #4ca8e72b;
+      box-shadow: 0 1px 0 #67cfff40;
+      transition: background 0.2s;
+    }
+
+    .keys i:nth-child(7n) {
+      background: linear-gradient(135deg, #16628b, #10304e);
+    }
+
+    .tech-label {
+      position: absolute;
+      left: 0;
+      top: 9%;
+      border: 1px solid var(--line);
+      background: #091c32d9;
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 10px 13px;
+      font: 11px Consolas, monospace;
+      color: #9de9ff;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .tech-label.label2 {
+      left: auto;
+      right: 0;
+      top: auto;
+      bottom: 19%;
+      animation-delay: -2s;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 84px 0;
+    }
+
+    .section-head {
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 850;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      letter-spacing: -0.05em;
+      line-height: 1.08;
+      margin: 8px 0 12px;
+    }
+
+    .sub {
+      color: var(--muted);
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #102745cc, #08182dcc);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 18px 50px #0002;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .panel:hover {
+      transform: translateY(-4px);
+      border-color: #5cbaff66;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 15px;
+      background: #0b2039b3;
+    }
+
+    .stat strong {
+      display: block;
+      color: #b6edff;
+      font-size: 22px;
+    }
+
+    .stat span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* PROFILE PHOTO */
+    .who-am-i-photo {
+      width: 112px;
+      height: 112px;
+      object-fit: cover;
+      object-position: center 28%;
+      border-radius: 50%;
+      border: 3px solid #45d9ff;
+      box-shadow: 0 0 22px rgba(69, 217, 255, 0.22);
+      display: block;
+      margin: 16px auto 0;
+    }
+
+    /* MODAL NAVIGATION */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(1, 7, 16, 0.76);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal {
+      width: min(900px, 100%);
+      max-height: min(85vh, 820px);
+      overflow: auto;
+      border: 1px solid #5cbaff50;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #0d2440, #071326 75%);
+      box-shadow: 0 30px 100px #000a;
+      transform: translateY(18px) scale(0.98);
+      transition: transform 0.25s;
+    }
+
+    .modal-backdrop.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 20px 24px;
+      background: #0b1d34ed;
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-head h2 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .close {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #102b4b;
+      color: white;
+      font-size: 23px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .close:hover {
+      background: #1a3a60;
+      transform: rotate(90deg);
+    }
+
+    .modal-content {
+      padding: 25px;
+    }
+
+    .modal-content p {
+      color: var(--muted);
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .info-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: #0d2038;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .info-card:hover {
+      border-color: #5cbaff66;
+      transform: translateY(-2px);
+    }
+
+    .info-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .info-card p {
+      font-size: 13px;
+    }
+
+    /* SKILLS */
+    .skill-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .track {
+      height: 7px;
+      background: #1c3451;
+      border-radius: 99px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: var(--w);
+      background: linear-gradient(90deg, #278be9, #53e0ff, #8d83ff);
+      border-radius: 99px;
+      transform-origin: left;
+      animation: grow 0.9s ease both;
+    }
+
+    @keyframes grow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    /* PROJECTS */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .project-art {
+      height: 110px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: end;
+      padding: 13px;
+      background: linear-gradient(135deg, #102d50, #245a87);
+      color: #a8edff;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      transition: filter 0.3s;
+    }
+
+    .project-art:hover {
+      filter: brightness(1.2);
+    }
+
+    .project-art.alt {
+      background: linear-gradient(135deg, #171e4a, #3c3679);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      color: #a9c8e8;
+    }
+
+    /* CERTIFICATES */
+    .certificates {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .certificate {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      overflow: hidden;
+      background: #0b1e35;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .certificate:hover {
+      transform: translateY(-5px);
+      border-color: #65d8ff88;
+      box-shadow: 0 12px 30px #0006;
+    }
+
+    .cert-art {
+      height: 135px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 80% 10%, #3568a6, transparent 38%),
+        linear-gradient(135deg, #102b4b, #081528);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cert-art .seal {
+      align-self: flex-end;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #7bdfff;
+      border-radius: 50%;
+      color: #7bdfff;
+      font-size: 16px;
+    }
+
+    .cert-art small {
+      color: #8be4ff;
+      letter-spacing: 0.15em;
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+
+    .cert-art strong {
+      font-size: 15px;
+      line-height: 1.15;
+      max-width: 190px;
+    }
+
+    .cert-body {
+      padding: 14px;
+    }
+
+    .cert-body h3 {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .cert-body p {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    /* CONTACT */
+    .contact-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: #06162a;
+      color: white;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 12px 13px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 18px #1a8aff33;
+    }
+
+    .contact-form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 25px 0;
+      border-top: 1px solid var(--line);
+      color: #7e9ab9;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: reveal 0.8s ease forwards;
+    }
+
+    .delay1 { animation-delay: 0.15s; }
+    .delay2 { animation-delay: 0.3s; }
+
+    @keyframes reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 850px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .hero-visual {
+        min-height: 410px;
+        order: -1;
+      }
+      .hero {
+        padding-top: 45px;
+      }
+      .tech-scene {
+        max-width: 470px;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 18px;
+        right: 18px;
+        padding: 12px;
+        background: #07172bef;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        flex-wrap: wrap;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .menu {
+        display: block;
+      }
+      .certificates {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 26px, 1180px);
+      }
+      .hero-visual {
+        min-height: 330px;
+      }
+      .orbit.one {
+        width: 320px;
+        height: 320px;
+      }
+      .orbit.two {
+        width: 260px;
+        height: 260px;
+      }
+      .tech-scene {
+        height: 280px;
+      }
+      .tech-label {
+        font-size: 9px;
+      }
+      .section {
+        padding: 60px 0;
+      }
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      .modal-content {
+        padding: 17px;
+      }
+      .modal-head {
+        padding: 16px;
+      }
+      .modal-grid,
+      .skill-list,
+      .projects,
+      .certificates {
+        grid-template-columns: 1fr;
+      }
+      .cert-art {
+        height: 120px;
+      }
+      h1 {
+        font-size: 49px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
+
 <header class="nav">
   <div class="container nav-inner">
-    <a class="logo" href="#">KENNETHLESTER<span>.</span>DEV</a>
+    <a class="logo" href="#">KENNETH<span>.</span>DEV</a>
     <nav class="nav-links" id="navLinks" aria-label="Portfolio sections">
-      <button data-modal="about">About</button><button data-modal="skills">Skills</button><button data-modal="work">Work</button><button data-modal="certificates">Certificates</button><button data-modal="contact">Contact</button>
+      <button data-modal="about">About</button>
+      <button data-modal="skills">Skills</button>
+      <button data-modal="work">Work</button>
+      <button data-modal="certificates">Certificates</button>
+      <button data-modal="education">Education</button>
+      <button data-modal="contact">Contact</button>
     </nav>
     <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
   </div>
 </header>
+
 <main>
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow reveal"><i class="pulse"></i> DEVELOPER • DESIGNER • PROBLEM SOLVER</span>
-      <h1 class="reveal delay1">Designing ideas.<br><span class="gradient">Building the future.</span></h1>
-      <p class="lead reveal delay2">I'm <strong>Kenneth Lester Bongdol</strong>, a Software Engineer, Front-End Developer, and UI/UX Designer focused on clean interfaces, responsive experiences, and useful digital solutions.</p>
-      <div class="actions reveal delay2"><button class="btn btn-primary" data-modal="work">Explore my work ↗</button><button class="btn btn-secondary" data-modal="contact">Let's connect</button></div>
-      <div class="stats reveal delay2"><div class="stat"><strong>UI/UX</strong><span>Design thinking</span></div><div class="stat"><strong>Web</strong><span>Responsive builds</span></div><div class="stat"><strong>Code</strong><span>Continuous learning</span></div></div>
-    </div>
-    <div class="hero-visual reveal delay1" aria-label="Illustration of a futuristic computer, keyboard, and system unit">
-      <div class="orbit one"></div><div class="orbit two"></div>
-      <div class="tech-label">SYSTEM ONLINE // KL-01</div><div class="tech-label label2">PHP · REACT · UI/UX</div>
-      <div class="tech-scene">
-        <div class="monitor"><div class="screen-code"><span>const</span> portfolio = {<br>&nbsp; designer: "Kenneth",<br>&nbsp; focus: "User Experience",<br>&nbsp; stack: [<span> "React"</span>,<br>&nbsp;&nbsp; "PHP", "MySQL" ],<br>&nbsp; status: "building..."<br>};<br><br><span>// Ideas into reality_</span></div></div>
-        <div class="monitor-neck"></div><div class="monitor-base"></div>
-        <div class="tower"></div>
-        <div class="keyboard"><div class="keys" id="keys"></div></div>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal"><i class="pulse"></i> DEVELOPER • DESIGNER • PROBLEM SOLVER</span>
+        <h1 class="reveal delay1">Designing ideas.<br><span class="gradient">Building the future.</span></h1>
+        <p class="lead reveal delay2">
+          I'm <strong>Kenneth Lester Bongdol</strong>, a Software Engineer, Front-End Developer,
+          and UI/UX Designer focused on clean interfaces, responsive experiences, and useful digital solutions.
+        </p>
+        <div class="actions reveal delay2">
+          <button class="btn btn-primary" data-modal="work">Explore my work ↗</button>
+          <button class="btn btn-secondary" data-modal="contact">Let's connect</button>
+        </div>
+        <div class="stats reveal delay2">
+          <div class="stat"><strong>UI/UX</strong><span>Design thinking</span></div>
+          <div class="stat"><strong>Web</strong><span>Responsive builds</span></div>
+          <div class="stat"><strong>Code</strong><span>Continuous learning</span></div>
+        </div>
+      </div>
+
+      <!-- FUTURISTIC PC ILLUSTRATION -->
+      <div class="hero-visual reveal delay1" aria-label="Illustration of a futuristic computer, keyboard, and system unit">
+        <div class="orbit one"></div>
+        <div class="orbit two"></div>
+        <div class="tech-label">SYSTEM ONLINE // KL-01</div>
+        <div class="tech-label label2">PHP · REACT · UI/UX</div>
+        <div class="tech-scene">
+          <div class="monitor">
+            <div class="screen-code">
+              <span>const</span> portfolio = {<br>
+              &nbsp; designer: "Kenneth Lester",<br>
+              &nbsp; focus: "User Experience",<br>
+              &nbsp; stack: [<span>"React"</span>,<br>
+              &nbsp;&nbsp; "PHP", "MySQL" ],<br>
+              &nbsp; status: "building..."<br>
+              };<br><br>
+              <span>// Ideas into reality_</span>
+            </div>
+          </div>
+          <div class="monitor-neck"></div>
+          <div class="monitor-base"></div>
+          <!-- SYSTEM UNIT with tech details -->
+          <div class="tower"></div>
+          <!-- KEYBOARD with detailed keys -->
+          <div class="keyboard">
+            <div class="keys" id="keys"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="section-head"><div class="kicker">PORTFOLIO CONTROL CENTER</div><h2>Explore the sections.</h2><p class="sub">Use the navigation on the top-right to open each section in a modal window. Your experience stays on this page.</p></div>
-    <div class="modal-grid">
-      <div class="panel"><h3>01 / About</h3><p>My background, interests, and approach to designing and developing useful digital experiences.</p></div>
-      <div class="panel"><h3>02 / Skills</h3><p>Front-end, back-end, database, and UI/UX skills presented in a clear technical overview.</p></div>
-      <div class="panel"><h3>03 / Work</h3><p>Selected projects and the technologies used to build them.</p></div>
-      <div class="panel"><h3>04 / Certificates</h3><p>Certificates, Seminars, Webinars, and Professional learning.</p></div>
-    </div>
-  </div>
-</section>
-</main>
-<footer><div class="container">© 2026 Kenneth Lester Bongdol · Software Engineer · Front-End Developer · UI/UX Designer</div></footer>
+  </section>
 
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">PORTFOLIO CONTROL CENTER</div>
+        <h2>Explore the sections.</h2>
+        <p class="sub">Use the navigation on the top-right or click any card below to open each section in a modal window.</p>
+      </div>
+      <div class="modal-grid">
+        <div class="panel" data-modal="about" style="cursor:pointer;">
+          <h3>01 / About</h3>
+          <p>My background, interests, and approach to designing and developing useful digital experiences.</p>
+        </div>
+        <div class="panel" data-modal="skills" style="cursor:pointer;">
+          <h3>02 / Skills</h3>
+          <p>Front-end, back-end, database, and UI/UX skills presented in a clear technical overview.</p>
+        </div>
+        <div class="panel" data-modal="work" style="cursor:pointer;">
+          <h3>03 / Work</h3>
+          <p>Selected projects and the technologies used to build them.</p>
+        </div>
+        <div class="panel" data-modal="certificates" style="cursor:pointer;">
+          <h3>04 / Certificates</h3>
+          <p>A dedicated gallery for certificates, seminars, webinars, and professional learning.</p>
+        </div>
+        <div class="panel" data-modal="education" style="cursor:pointer;">
+          <h3>05 / Education</h3>
+          <p>My academic background and educational achievements.</p>
+        </div>
+        <div class="panel" data-modal="contact" style="cursor:pointer;">
+          <h3>06 / Contact</h3>
+          <p>Get in touch for collaborations, opportunities, or just to say hello.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 Kenneth Lester Bongdol · Software Engineer · Front-End Developer · UI/UX Designer
+  </div>
+</footer>
+
+<!-- MODAL CONTAINER -->
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal">
-    <div class="modal-head"><h2 id="modalTitle">About</h2><button class="close" id="closeModal" aria-label="Close modal">×</button></div>
+    <div class="modal-head">
+      <h2 id="modalTitle">About</h2>
+      <button class="close" id="closeModal" aria-label="Close modal">×</button>
+    </div>
     <div class="modal-content" id="modalContent"></div>
   </div>
 </div>
+
 <script>
-const modalData = {
-about: {title:"About Me",html:`<div class="modal-grid"><article class="info-card"><h3>Who I am</h3><p>I'm Kenneth Lester S. Bongdol, an aspiring software engineer and UI/UX designer who enjoys turning ideas into accessible, practical digital experiences.</p></article><article class="info-card"><h3>What I do</h3><p>I work with responsive web layouts, interface design, front-end development, and database-backed application concepts.</p></article><article class="info-card"><h3>My approach</h3><p>Understand the user → organize information → design the interface → build → test → improve.</p></article><article class="info-card"><h3>Current focus</h3><p>Strengthening my development skills, creating useful projects, and documenting my learning through seminars and certificates.</p></article></div>`},
-skills: {title:"Skills & Technologies",html:`<div class="skill-list">${[['HTML & CSS','85%','85%'],['Bootstrap 5','85%','85%'],['UI/UX Design','80%','80%'],['JavaScript','70%','70%'],['PHP','70%','70%'],['MySQL','70%','70%'],['React.js','60%','60%'],['Responsive Design','85%','85%']].map(([n,v,w])=>`<div class="info-card"><div class="skill-top"><span>${n}</span><span>${v}</span></div><div class="track"><div class="fill" style="--w:${w}"></div></div></div>`).join('')}</div><p class="note">Skill levels are editable estimates. Adjust them to accurately reflect your current experience.</p>`},
-work: {title:"Selected Work",html:`<div class="projects"><article class="info-card"><div class="project-art">DOCUMENT TRACKING SYSTEM</div><h3>Web-based Document Tracker</h3><p>Concept for tracking incoming and outgoing documents, routing, status updates, notifications, and reporting for office operations.</p><div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Bootstrap 5</span></div></article><article class="info-card"><div class="project-art alt">PERSONAL PORTFOLIO</div><h3>Developer Portfolio</h3><p>A responsive portfolio experience combining a technical visual style, modal navigation, motion, and a project/certificate gallery.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div></article></div>`},
-certificates: {title:"Certificates & Seminars",html:`<div class="certificates">${[['Research Seminar-Workshop entitled 2026 CITE Capstone and Thesis Research Congress: Advancing Computing Research and Innovation','Capstone Seminar','NVSU Library / Nueva Vizcaya State University, Bayombong Nueva Vizcayan · 2026'],['GRAPHIC GREATNESS: STRATEGIES FOR SOCIAL MEDIA MARKETING ','UI/UX workshop or seminar','3rd Floor, ITE BUILDING  / Nueva Vizcaya State University, Bayombong, Nueva Vizcaya · 2024'],['ELECTRICAL AND INSTALLATION MAINTENANCE-NCII','Technical Education and Skill Development Authority','Balasi Secretario Training Center Inc. · 2023'],['COMPUTER SYSTEM AND SERVICING-NCII','Technical Education and Skill Development Authority ','Southern Isabela College of Arts and Trades-SICAT · 2018']].map(([type,title,meta],i)=>`<article class="certificate"><div class="cert-art"><small>${type}</small><div class="seal">✦</div><strong>${title}</strong></div><div class="cert-body"><h3>${title}</h3><p>${meta}</p></div></article>`).join('')}</div>`},
-contact: {title:"Contact",html:`<div class="modal-grid"><div class="info-card"><h3>Let's work together</h3><p>Open to learning opportunities, collaborations, internships, and web development projects.</p><p style="margin-top:12px">Email: <a href="mailto:your.email@example.com" style="color:#78e4ff">your.email@example.com</a></p><p class="note">Replace the sample email with your real contact address.</p></div><form class="contact-form" id="contactForm"><input name="name" placeholder="Your name" required><input type="email" name="email" placeholder="Your email" required><textarea name="message" placeholder="Your message" required></textarea><button class="btn btn-primary" type="submit">Prepare email ↗</button></form></div>`}
-};
-const backdrop=document.getElementById('modalBackdrop'), title=document.getElementById('modalTitle'), content=document.getElementById('modalContent');
-function openModal(key){const item=modalData[key];if(!item)return;title.textContent=item.title;content.innerHTML=item.html;backdrop.style.display='flex';requestAnimationFrame(()=>backdrop.classList.add('open'));document.body.style.overflow='hidden';document.getElementById('navLinks').classList.remove('show');document.getElementById('menuBtn').setAttribute('aria-expanded','false');}
-function closeModal(){backdrop.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{if(!backdrop.classList.contains('open'))backdrop.style.display='none'},250)}
-document.querySelectorAll('[data-modal]').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.modal)));
-document.getElementById('closeModal').addEventListener('click',closeModal);
-backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-document.getElementById('menuBtn').addEventListener('click',()=>{const nav=document.getElementById('navLinks');nav.classList.toggle('show');document.getElementById('menuBtn').setAttribute('aria-expanded',nav.classList.contains('show')?'true':'false')});
-document.addEventListener('submit',e=>{if(e.target.id==='contactForm'){e.preventDefault();const f=new FormData(e.target);const subject=encodeURIComponent('Portfolio inquiry from '+f.get('name'));const body=encodeURIComponent('From: '+f.get('name')+' ('+f.get('email')+')\n\n'+f.get('message'));window.location.href='mailto:your.email@example.com?subject='+subject+'&body='+body}});
-const keys=document.getElementById('keys');for(let i=0;i<56;i++){const k=document.createElement('i');keys.appendChild(k)}
+  // ---------- MODAL DATA ----------
+  const modalData = {
+    about: {
+      title: "About Me",
+      html: `<div class="modal-grid">
+        <article class="info-card">
+          <h3>Who I am</h3>
+          <p>I'm Kenneth Lester Bongdol, an aspiring software engineer and UI/UX designer who enjoys turning ideas into accessible, practical digital experiences.</p>
+          <img src="profile.png" alt="Kenneth Lester Bongdol" class="who-am-i-photo">
+        </article>
+        <article class="info-card"><h3>What I do</h3><p>I work with responsive web layouts, interface design, front-end development, and database-backed application concepts.</p></article>
+        <article class="info-card"><h3>My approach</h3><p>Understand the user → organize information → design the interface → build → test → improve.</p></article>
+        <article class="info-card"><h3>Current focus</h3><p>Strengthening my development skills, creating useful projects, and documenting my learning through seminars and certificates.</p></article>
+      </div>`
+    },
+    skills: {
+      title: "Skills & Technologies",
+      html: `<div class="skill-list">${
+        [
+          ['HTML & CSS','85%','85%'],
+          ['Bootstrap 5','85%','85%'],
+          ['UI/UX Design','80%','80%'],
+          ['JavaScript','70%','70%'],
+          ['PHP','70%','70%'],
+          ['MySQL','70%','70%'],
+          ['React.js','60%','60%'],
+          ['Responsive Design','85%','85%']
+        ].map(([n,v,w]) => `
+          <div class="info-card">
+            <div class="skill-top"><span>${n}</span><span>${v}</span></div>
+            <div class="track"><div class="fill" style="--w:${w}"></div></div>
+          </div>
+        `).join('')
+      }</div>`
+    },
+    work: {
+      title: "Selected Work",
+      html: `<div class="projects">
+        <article class="info-card">
+          <div class="project-art">DOCUMENT TRACKING SYSTEM</div>
+          <h3>Web-based Document Tracker</h3>
+          <p>Concept for tracking incoming and outgoing documents, routing, status updates, notifications, and reporting for office operations.</p>
+          <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Bootstrap 5</span></div>
+        </article>
+        <article class="info-card">
+          <div class="project-art alt">PERSONAL PORTFOLIO</div>
+          <h3>Developer Portfolio</h3>
+          <p>A responsive portfolio experience combining a technical visual style, modal navigation, motion, and a project/certificate gallery.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </article>
+      </div>`
+    },
+    certificates: {
+      title: "Certificates & Seminars",
+      html: `<div class="certificates">${
+        [
+          ['Research Seminar-Workshop',
+           '2026 CITE Capstone and Thesis Research Congress: Advancing Computing Research and Innovation',
+           'NVSU Library / Nueva Vizcaya State University, Bayombong · 2026'],
+          ['Graphic Greatness',
+           'Strategies for Social Media Marketing',
+           'ITE Building / Nueva Vizcaya State University, Bayombong · 2024'],
+          ['Electrical and Installation Maintenance (NC II)',
+           'Technical Education and Skill Development Authority',
+           'Balasi Secretario Training Center Inc. · 2023'],
+          ['Cybersecurity',
+           'Computer System and Servicing (NC II)',
+           'Technical Education and Skill Development Authority / Southern Isabela College of Arts and Trades (SICAT) · 2018']
+        ].map(([type, title, meta], i) => `
+          <article class="certificate">
+            <div class="cert-art">
+              <small>${type}</small>
+              <div class="seal">✦</div>
+              <strong>${title}</strong>
+            </div>
+            <div class="cert-body">
+              <h3>${title}</h3>
+              <p>${meta}</p>
+            </div>
+          </article>
+        `).join('')
+      }</div>`
+    },
+    education: {
+      title: "Educational Background",
+      html: `<div class="modal-grid">
+        <article class="info-card">
+          <h3>Bachelor of Science in Information Technology</h3>
+          <p>Nueva Vizcaya State University – Bayombong Campus<br>2022 – Present</p>
+        </article>
+        <article class="info-card">
+          <h3>Senior High School – STEM</h3>
+          <p>Southern Isabela College of Arts and Trades<br>2020 – 2022</p>
+        </article>
+        <article class="info-card">
+          <h3>Junior High School</h3>
+          <p>Balasi Secretario National High School<br>2016 – 2020</p>
+        </article>
+        <article class="info-card">
+          <h3>Elementary</h3>
+          <p>Balasi Elementary School<br>2010 – 2016</p>
+        </article>
+      </div>`
+    },
+    contact: {
+      title: "Contact",
+      html: `<div class="modal-grid">
+        <div class="info-card">
+          <h3>Let's work together</h3>
+          <p>Open to learning opportunities, collaborations, internships, and web development projects.</p>
+          <p style="margin-top:12px">Email: <a href="mailto:kenneth.bongdol@example.com" style="color:#78e4ff">kenneth.bongdol@example.com</a></p>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <input name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" placeholder="Your message" required></textarea>
+          <button class="btn btn-primary" type="submit">Prepare email ↗</button>
+        </form>
+      </div>`
+    }
+  };
+
+  // ---------- MODAL CONTROLS ----------
+  const backdrop = document.getElementById('modalBackdrop');
+  const title = document.getElementById('modalTitle');
+  const content = document.getElementById('modalContent');
+
+  function openModal(key) {
+    const item = modalData[key];
+    if (!item) return;
+    title.textContent = item.title;
+    content.innerHTML = item.html;
+    backdrop.style.display = 'flex';
+    requestAnimationFrame(() => backdrop.classList.add('open'));
+    document.body.style.overflow = 'hidden';
+    document.getElementById('navLinks').classList.remove('show');
+    document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
+  }
+
+  function closeModal() {
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (!backdrop.classList.contains('open')) backdrop.style.display = 'none';
+    }, 250);
+  }
+
+  // Attach click events to all elements with data-modal
+  document.querySelectorAll('[data-modal]').forEach(el => {
+    el.addEventListener('click', () => openModal(el.dataset.modal));
+  });
+
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+  backdrop.addEventListener('click', e => {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Mobile menu toggle
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('show');
+    document.getElementById('menuBtn').setAttribute('aria-expanded', nav.classList.contains('show') ? 'true' : 'false');
+  });
+
+  // Contact form mailto handler
+  document.addEventListener('submit', e => {
+    if (e.target.id === 'contactForm') {
+      e.preventDefault();
+      const f = new FormData(e.target);
+      const subject = encodeURIComponent('Portfolio inquiry from ' + f.get('name'));
+      const body = encodeURIComponent('From: ' + f.get('name') + ' (' + f.get('email') + ')\n\n' + f.get('message'));
+      window.location.href = 'mailto:kenneth.bongdol@example.com?subject=' + subject + '&body=' + body;
+    }
+  });
+
+  // Generate keyboard keys (56 keys in a 14x4 grid)
+  const keysContainer = document.getElementById('keys');
+  for (let i = 0; i < 56; i++) {
+    const k = document.createElement('i');
+    keysContainer.appendChild(k);
+  }
+
+  // Add a slight interactive tilt to the hero visual on mousemove
+  const heroVisual = document.querySelector('.hero-visual');
+  if (heroVisual) {
+    heroVisual.addEventListener('mousemove', (e) => {
+      const rect = heroVisual.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const scene = heroVisual.querySelector('.tech-scene');
+      if (scene) {
+        scene.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 6}deg)`;
+      }
+    });
+    heroVisual.addEventListener('mouseleave', () => {
+      const scene = heroVisual.querySelector('.tech-scene');
+      if (scene) {
+        scene.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      }
+    });
+  }
 </script>
 </body>
 </html>
